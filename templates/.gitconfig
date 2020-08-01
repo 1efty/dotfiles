@@ -1,0 +1,22 @@
+[include]
+    path = ~/.gitconfig.local
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+[core]
+    excludesfile = {{ env.Getenv "HOME" }}/.gitignore
+[fetch]
+    prune = true
+[pull]
+    rebase = true
+[alias]
+    co = checkout
+    st = status
+    br = branch
+    w = whatchanged
+    amend = commit --amend
+

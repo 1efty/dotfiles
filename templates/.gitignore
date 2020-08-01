@@ -1,0 +1,5 @@
+.vscode
+.devcontainer
+.env
+.envrc
+.DS_Store
