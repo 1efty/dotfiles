@@ -9,6 +9,11 @@ function gitcommitters() {
 	git log --pretty="%an %ae%n%cn %ce" | sort | uniq
 }
 
+# remove a specific file from history
+function gitremovefromhistory() {
+	git filter-branch --force --index-filter "git rm --cached --ignore-match $1" --prune-empty --tag-name-filter cat -- --all
+}
+
 # setup auto-completion
 if command -v git >/dev/null; then
 	if [ "$OS" = "darwin" ]; then
