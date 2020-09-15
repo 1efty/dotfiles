@@ -14,6 +14,12 @@ function gitremovefromhistory() {
 	git filter-branch --force --index-filter "git rm --cached --ignore-match $1" --prune-empty --tag-name-filter cat -- --all
 }
 
+# set common git config in .git/config
+function gitlocalconfig() {
+	git config user.name "$(git config --get user.name)"
+	git config user.email "$(git config --get user.email)"
+}
+
 # setup auto-completion
 if command -v git >/dev/null; then
 	if [ "$OS" = "darwin" ]; then
