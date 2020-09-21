@@ -20,7 +20,7 @@ function gitlocalconfig() {
 	git config user.email "$(git config --get user.email)"
 }
 
-# setup auto-completion
+# setup bash completion
 if command -v git >/dev/null; then
 	if [ "$OS" = "darwin" ]; then
 		source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash

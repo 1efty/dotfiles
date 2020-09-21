@@ -4,9 +4,11 @@ export AWS_SHARED_CREDENTIALS_FILE="${AWS_DATA_PATH}/credentials"
 export AWS_DEFAULT_REGION="us-east-1"
 export AWS_DEFAULT_OUTPUT="json"
 
-# Install auto-completion
+# setup bash completion
 if command -v aws_completer >/dev/null; then
-	complete -C "$(which aws_completer)" aws
+	if [ "$OS" = "linux" ]; then
+		complete -C "$(which aws_completer)" aws
+	fi
 fi
 
 # `Login` to aws
