@@ -1,5 +1,5 @@
 if [ "${OS}" = "darwin" ]; then
-	DIGITALOCEAN_CONFIG="${HOME}/Library/Application Support/doctl/config.yaml"
+	export DIGITALOCEAN_CONFIG="${HOME}/Library/Application Support/doctl/config.yaml"
 fi
 
 function doenv() {
