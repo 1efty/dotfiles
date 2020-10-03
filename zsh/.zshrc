@@ -113,3 +113,10 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Load all files from .rc.d directory
+if [ -d "${HOME}/.rc.d" ]; then
+	for file in ${HOME}/.rc.d/*.sh; do
+		source $file
+	done
+fi
