@@ -1,7 +1,7 @@
 # .bash_profile
 
-if [ -f ${HOME}/.bashrc ]; then
-	source ${HOME}/.bashrc
+if [ -f "${HOME}/.bashrc" ]; then
+	source "${HOME}/.bashrc"
 fi
 
 # Load all files from login.d directory
