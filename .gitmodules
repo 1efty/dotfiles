@@ -1,0 +1,19 @@
+[submodule "ohmyzsh"]
+path = zsh/.oh-my-zsh
+url = https://github.com/ohmyzsh/ohmyzsh
+
+[submodule "powerlevel10k"]
+path = zsh/.zsh-custom/themes/powerlevel10k
+url = https://github.com/romkatv/powerlevel10k
+
+[submodule "zsh-autosuggestions"]
+path = zsh/.zsh-custom/plugins/zsh-autosuggestions
+url = https://github.com/zsh-users/zsh-autosuggestions
+
+[submodule "zsh-history-substring-search"]
+path = zsh/.zsh-custom/plugins/zsh-history-substring-search
+url = https://github.com/zsh-users/zsh-history-substring-search
+
+[submodule "zsh-syntax-highlighting"]
+path = zsh/.zsh-custom/plugins/zsh-syntax-highlighting
+url = https://github.com/zsh-users/zsh-syntax-highlighting
