@@ -13,13 +13,3 @@ function yellow() {
 function cyan() {
 	echo "$(tput setaf 6)$*$(tput sgr0)"
 }
-
-if [ -z "${LS_COLORS+x}" ]; then
-	if command -v dircolors >/dev/null 2>&1; then
-		eval "$(dircolors -b)"
-		export LS_OPTIONS="--color=auto"
-		alias ls="ls $LS_OPTIONS"
-	else
-		echo "* Cannot properly set \$LS_COLORS"
-	fi
-fi

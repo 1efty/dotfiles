@@ -2,7 +2,7 @@
 
 export DOTFILES_PATH="$(pwd)"
 
-declare -a PACKAGES=("bash" "git" "powerlevel10k" "zsh")
+declare -a PACKAGES=("bash" "git" "powerlevel10k" "rc" "zsh")
 
 function template_file() {
 	gomplate -f "$1" -o "$2" 2>/dev/null
@@ -13,11 +13,11 @@ function get_templates() {
 }
 
 function stow_pkg() {
-	stow --ignore=.gitkeep --target $HOME "$1"
+	stow -v --ignore=.gitkeep --target $HOME "$1"
 }
 
 function unstow_pkg() {
-	stow --ignore=.gitkeep --target $HOME -D "$1"
+	stow -v --ignore=.gitkeep --target $HOME -D "$1"
 }
 
 function install_pkgs() {
