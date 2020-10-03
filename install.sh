@@ -1,14 +1,65 @@
 #!/usr/bin/env bash
 
-mkdir $DOTFILES_STORAGE_PATH
-cp -r rc.d/ $DOTFILES_STORAGE_PATH/rc.d/
+export DOTFILES_PATH="$(pwd)"
 
-gomplate -f templates/.gitignore -o $DOTFILES_STORAGE_PATH/.gitignore
-gomplate -f templates/.gitconfig -o $DOTFILES_STORAGE_PATH/.gitconfig
-gomplate -f templates/.bash_profile -o $DOTFILES_STORAGE_PATH/.bash_profile
-gomplate -f templates/.bashrc -o $DOTFILES_STORAGE_PATH/.bashrc
+declare -a PACKAGES=("bash" "git" "powerlevel10k" "zsh")
 
-ln -sf $DOTFILES_STORAGE_PATH/.bashrc $HOME/.bashrc
-ln -sf $DOTFILES_STORAGE_PATH/.bash_profile $HOME/.bash_profile
-ln -sf $DOTFILES_STORAGE_PATH/.gitignore $HOME/.gitignore
-ln -sf $DOTFILES_STORAGE_PATH/.gitconfig $HOME/.gitconfig
+function template_file() {
+	gomplate -f "$1" -o "$2" 2>/dev/null
+}
+
+function get_templates() {
+	echo $(find ${DOTFILES_PATH}/templates -type f)
+}
+
+function stow_pkg() {
+	stow --ignore=.gitkeep --target $HOME "$1"
+}
+
+function unstow_pkg() {
+	stow --ignore=.gitkeep --target $HOME -D "$1"
+}
+
+function install_pkgs() {
+	templates=$(get_templates)
+	for tmpl in ${templates[@]}; do
+		local pkg_path="$(basename $(dirname $tmpl))"
+		template_file "$tmpl" "${pkg_path}/$(basename $tmpl)"
+	done
+
+	# stow packages
+	for pkg in ${PACKAGES[@]}; do
+		stow_pkg $pkg
+	done
+}
+
+function uninstall_pkgs() {
+	for pkg in ${PACKAGES[@]}; do
+		unstow_pkg $pkg
+	done
+}
+
+function parge_args() {
+	while [[ $1 ]]; do
+		echo "Handling [$1]"
+		case "$1" in
+		--install)
+			install_pkgs
+			exit
+			;;
+		--uninstall)
+			uninstall_pkgs
+			exit
+			;;
+		*)
+			usage
+			;;
+		esac
+	done
+}
+
+function main() {
+	parge_args $@
+}
+
+main $@
