@@ -1,6 +1,6 @@
 # dotfiles
 
-Shell configuration `conf.d` style.
+My dotfiles.
 
 ## Getting Started
 
@@ -9,7 +9,8 @@ Shell configuration `conf.d` style.
 Before using this project, make sure the following are installed:
 
 - git
-- make
+- GNU Make
+- GNU stow
 
 ### Installation
 
@@ -22,7 +23,7 @@ make init
 Run `install` make target
 
 ```bash
-make installl
+make install
 ```
 
 ### Removal
@@ -32,7 +33,3 @@ Execute the `uninstall` make target
 ```bash
 make uninstall
 ```
-
-## Including Configuration Outside of this Project
-
-Create `~/.dotfiles.d` directory and place `.sh` files you want to include.

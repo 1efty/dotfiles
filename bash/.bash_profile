@@ -5,8 +5,8 @@ if [ -f ${HOME}/.bashrc ]; then
 fi
 
 # Load all files from login.d directory
-if [ -d {{ env.Getenv "DOTFILES_PATH" }}/login.d ]; then
-	for file in {{ env.Getenv "DOTFILES_PATH" }}/login.d/*.sh; do
+if [ -d "${HOME}/login.d" ]; then
+	for file in "${HOME}/login.d/*.sh"; do
 		source $file
 	done
 fi
