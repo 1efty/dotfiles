@@ -1,6 +1,6 @@
 # delete local tracking branches that are no longer on remote
 function gitmergehook() {
-	git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d 2>/dev/null
+	git branch --merged | egrep -v "(^\*|master|dev|main)" | xargs git branch -d 2>/dev/null
 	git fetch -p
 }
 
