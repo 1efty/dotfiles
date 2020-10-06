@@ -5,6 +5,10 @@ include $(shell curl --silent -o .build-harness "https://raw.githubusercontent.c
 fmt: packages/install/shfmt
 	shfmt -d -w templates/bash/.* bash/.bashrc.d/* install.sh
 
+## Initialize git submodules
+init/submodules:
+	git submodule update --init --recursive
+
 ## Install to $DOTFILES_PATH
 install: packages/install/gomplate
 	bash install.sh --install
