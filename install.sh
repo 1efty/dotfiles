@@ -39,6 +39,12 @@ function uninstall_pkgs() {
 	done
 }
 
+function usage() {
+	cat <<EOF
+Usage: bash install.sh [--install] [--uninstall]
+EOF
+}
+
 function parge_args() {
 	while [[ $1 ]]; do
 		echo "Handling [$1]"
@@ -53,6 +59,7 @@ function parge_args() {
 			;;
 		*)
 			usage
+			exit
 			;;
 		esac
 	done
