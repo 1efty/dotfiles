@@ -3,7 +3,7 @@ include $(shell curl --silent -o .build-harness "https://raw.githubusercontent.c
 
 ## Format shell scripts
 fmt: packages/install/shfmt
-	shfmt -d -w templates/bash/.* bash/.bashrc.d/* install.sh
+	shfmt -d -w bash/.bashrc.d/* rc/.rc.d/*.sh install.sh
 
 ## Initialize git submodules
 init/submodules:
