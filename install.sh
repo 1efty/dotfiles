@@ -2,7 +2,7 @@
 
 export DOTFILES_PATH="$(pwd)"
 
-declare -a PACKAGES=("bash" "git" "rc" "vim" "zsh")
+declare -a PACKAGES=("bash" "git" "npm" "rc" "vim" "zsh")
 
 function template_file() {
 	gomplate -f "$1" -o "$2" 2>/dev/null
