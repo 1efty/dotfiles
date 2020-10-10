@@ -6,7 +6,7 @@ if command -v aws-vault >/dev/null; then
 
 	if [ -n "$AWS_VAULT" ]; then
 		export ASSUME_ROLE=${AWS_VAULT}
-		# Set the Terraform `aws_assume_role_arn` based on our current context
+		# set the Terraform `aws_assume_role_arn` based on our current context
 		export TF_VAR_aws_assume_role_arn=$(aws sts get-caller-identity --output text --query 'Arn' | sed 's/:sts:/:iam:/g' | sed 's,:assumed-role/,:role/,' | cut -d/ -f1-2)
 		if [ -n "${TF_VAR_aws_assume_role_arn}" ]; then
 			echo "* Assumed role $(green ${TF_VAR_aws_assume_role_arn})"
