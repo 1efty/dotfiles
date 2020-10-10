@@ -1,4 +1,6 @@
-# clear GNOME image thumbnail cache
+# clean up cache directories
 function cclean() {
-	find ${HOME}/.cache/thumbnails -name *.png -exec rm {} \;
+	if [ -d "${HOME}/.cache" ]; then
+		find "${HOME}/.cache" -name "*.png" -name "*.jpg" -exec rm {} \;
+	fi
 }
