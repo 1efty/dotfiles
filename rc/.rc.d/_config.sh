@@ -1,7 +1,7 @@
-# Enable vi command navigation
+# enable vi command navigation
 set -o vi
 
-# Operating system
+# operating system
 export OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
 
 # disable BASH deprecation warnings on `darwin`

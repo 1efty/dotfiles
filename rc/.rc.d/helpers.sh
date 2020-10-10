@@ -1,10 +1,10 @@
-# Generate a random string
+# generate a random string
 function randpw() {
 	env LC_CTYPE=C tr -dc "a-zA-Z0-9-_" </dev/urandom | head -c "${1:-16}"
 	echo
 }
 
-# Create SOCKS5 tunnel using SSH
+# create SOCKS5 tunnel using SSH
 function ssht() {
 	local host="${1}"
 	local port="${2:-8080}"
@@ -16,7 +16,7 @@ function ssht() {
 	export ALL_PROXY="${proxy}"
 }
 
-# Start a shell with an assumed role
+# start a shell with an assumed role
 function assume-role() {
 	_aws_vault_assume_role $*
 }

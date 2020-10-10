@@ -4,7 +4,7 @@ export AWS_SHARED_CREDENTIALS_FILE="${AWS_DATA_PATH}/credentials"
 export AWS_DEFAULT_REGION="us-east-1"
 export AWS_DEFAULT_OUTPUT="json"
 
-# `Login` to aws
+# setup environment for AWS communication
 function awsenv() {
 	local profile="${1}"
 
