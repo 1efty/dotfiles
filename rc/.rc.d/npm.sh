@@ -4,6 +4,6 @@ export NPM_PACKAGES="${HOME}/.npm-packages"
 test -d "$NPM_PACKAGES" || mkdir -p "$NPM_PACKAGES"
 
 # add local npm package bin to $PATH
-if [ -d $NPM_PACKAGES ]; then
+if [ -d "$NPM_PACKAGES" ]; then
 	export PATH="${NPM_PACKAGES}/bin:${PATH}"
 fi
