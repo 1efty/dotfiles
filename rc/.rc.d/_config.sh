@@ -5,6 +5,6 @@ set -o vi
 export OS="$(uname -s | tr '[:upper:]' '[:lower:]')"
 
 # disable BASH deprecation warnings on `darwin`
-if [ "${OS}" = "darwin" ]; then
+if [ "$OS" = "darwin" ]; then
 	export BASH_SILENCE_DEPRECATION_WARNING=1
 fi

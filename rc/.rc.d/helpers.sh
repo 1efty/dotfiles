@@ -6,14 +6,14 @@ function randpw() {
 
 # create SOCKS5 tunnel using SSH
 function ssht() {
-	local host="${1}"
-	local port="${2:-8080}"
+	local host="$1"
+	local port="${2:-"8080"}"
 	local tunnels="$(pgrep -fa ${port})"
-	if [ ! -n "${tunnels}" ]; then
-		ssh -D ${port} -f -C -q -N ${host}
+	if [ ! -n "$tunnels" ]; then
+		ssh -D "$port" -f -C -q -N "$host"
 	fi
 	local proxy="socks5h://localhost:${port}"
-	export ALL_PROXY="${proxy}"
+	export ALL_PROXY="$proxy"
 }
 
 # start a shell with an assumed role
