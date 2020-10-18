@@ -10,8 +10,13 @@ function gitcommitters() {
 }
 
 # remove a specific file from history
-function gitremovefromhistory() {
-	git filter-branch --force --index-filter "git rm --cached --ignore-match $1" --prune-empty --tag-name-filter cat -- --all
+function gitremovefilefromhistory() {
+	git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $1" --prune-empty --tag-name-filter cat -- --all
+}
+
+# remove a specific directory from history
+function gitremovedirfromhistory() {
+	git filter-branch --force --index-filter "git rm -r --cached --ignore-unmatch $1" --prune-empty --tag-name-filter cat -- --all
 }
 
 # set common git config in .git/config
