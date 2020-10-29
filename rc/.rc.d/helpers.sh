@@ -11,9 +11,16 @@ function ssht() {
 	local tunnels="$(pgrep -fa ${port})"
 	if [ ! -n "$tunnels" ]; then
 		ssh -D "$port" -f -C -q -N "$host"
+		export SSH_TUNNEL_PID="$(pgrep -fal "ssh -D $port" | awk '{print $1}')"
 	fi
 	local proxy="socks5h://localhost:${port}"
 	export ALL_PROXY="$proxy"
+}
+
+# destroy SOCKS5 tunnel
+function sshtd() {
+	kill $SSH_TUNNEL_PID
+	unset ALL_PROXY SSH_TUNNEL_PID
 }
 
 # start a shell with an assumed role
