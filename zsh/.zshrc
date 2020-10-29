@@ -81,7 +81,12 @@ ZSH_CUSTOM="${HOME}/.zsh-custom"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws git zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)
+plugins=(aws git ssh-agent zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)
+
+# ssh-agent plugin
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/ssh-agent#instructions
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent lifetime 4h
 
 source $ZSH/oh-my-zsh.sh
 
