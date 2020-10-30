@@ -13,11 +13,11 @@ function get_templates() {
 }
 
 function stow_pkg() {
-	stow -v --ignore=.gitkeep --target $HOME "$1"
+	stow -v --ignore=.gitkeep --dotfiles --target $HOME "$1"
 }
 
 function unstow_pkg() {
-	stow -v --ignore=.gitkeep --target $HOME -D "$1"
+	stow -v --ignore=.gitkeep --dotfiles --target $HOME -D "$1"
 }
 
 function install_pkgs() {
