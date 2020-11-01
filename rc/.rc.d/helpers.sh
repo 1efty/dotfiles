@@ -19,7 +19,9 @@ function ssht() {
 
 # destroy SOCKS5 tunnel
 function sshtd() {
-	kill $SSH_TUNNEL_PID 2>/dev/null
+	if ps -p $SSH_TUNNEL_PID >/dev/null; then
+		kill $SSH_TUNNEL_PID 2>/dev/null
+	fi
 	unset ALL_PROXY SSH_TUNNEL_PID
 }
 
