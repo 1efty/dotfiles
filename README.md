@@ -6,7 +6,7 @@ My dotfiles, managed using [GNU Stow][].
 
 ### Templates
 
-I utilize [hairyhenderson/gomplate][] as a template engine for pesky files that would be better off being dynamic. For example, `git` doesn't perform shell-expansion on values within it's `.gitconfig` files, and I'd rather not share my filesystem layout with the world, so I turned it into a simple template that will generate the proper value at install-time. This also means that, at some point in the future, this entire repository could be tailored around a config file. This could then allow for user-specific configuration for things like `$ZSH_THEME`.
+I utilize [hairyhenderson/gomplate][] as a template engine for files that would be better off being dynamic. At some point this could be expanded to include a config file
 
 ## Getting Started
 

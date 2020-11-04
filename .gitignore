@@ -1,5 +1,3 @@
-*build-harness
-
 # dynamic files
-git/.gitconfig
-npm/.npmrc
+packages/git/.gitconfig
+packages/npm/.npmrc

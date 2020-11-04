@@ -2,9 +2,10 @@
 
 export DOTFILES_PATH="$(pwd)"
 
-declare -a PACKAGES=("bash" "git" "npm" "pyenv" "rc" "ssh" "vim" "zsh")
+declare -a PACKAGES=$(find ./packages -type d -maxdepth 1 | tail -n+2 | xargs basename)
 
 function template_file() {
+	echo "Templating $1 to $2..."
 	gomplate -f "$1" -o "$2" 2>/dev/null
 }
 
@@ -13,18 +14,18 @@ function get_templates() {
 }
 
 function stow_pkg() {
-	stow -v --ignore=.gitkeep --dotfiles --target $HOME "$1"
+	stow -v --ignore=.gitkeep --dotfiles --target $HOME -d packages "$1"
 }
 
 function unstow_pkg() {
-	stow -v --ignore=.gitkeep --dotfiles --target $HOME -D "$1"
+	stow -v --ignore=.gitkeep --dotfiles --target $HOME -D -d packages "$1"
 }
 
 function install_pkgs() {
 	templates=$(get_templates)
 	for tmpl in ${templates[@]}; do
 		local pkg_path="$(basename $(dirname $tmpl))"
-		template_file "$tmpl" "${pkg_path}/$(basename $tmpl)"
+		template_file "$tmpl" "packages/${pkg_path}/$(basename $tmpl)"
 	done
 
 	# stow packages
