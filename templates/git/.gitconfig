@@ -1,5 +1,5 @@
 [include]
-path = ~/.gitconfig.local
+path = {{ env.Getenv "HOME" }}/.gitconfig.local
 
 [color]
 diff = auto
