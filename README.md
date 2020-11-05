@@ -52,3 +52,34 @@ make uninstall
 [GNU Make]: <https://www.gnu.org/software/make/>
 [CloudPosse Build-Harness]: <https://github.com/cloudposse/build-harness>
 [hairyhenderson/gomplate]: <https://github.com/hairyhenderson/gomplate>
+
+## Ignored Files
+
+By default, [GNU Stow] ignores the following
+
+```gitignore
+# Comments and blank lines are allowed.
+
+RCS
+.+,v
+
+CVS
+\.\#.+       # CVS conflict files / emacs lock files
+\.cvsignore
+
+\.svn
+_darcs
+\.hg
+
+\.git
+\.gitignore
+
+.+~          # emacs backup files
+\#.*\#       # emacs autosave files
+
+^/README.*
+^/LICENSE.*
+^/COPYING
+```
+
+> `NOTE:` If a `.stow-local-ignore` is present in a package, the default ignore list is ignored.
