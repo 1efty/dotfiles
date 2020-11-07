@@ -2,7 +2,7 @@
 
 export DOTFILES_PATH="$(pwd)"
 
-declare -a PACKAGES=$(find ./packages -type d -maxdepth 1 | tail -n+2 | xargs basename)
+declare -a PACKAGES=$(find ./packages -maxdepth 1 -type d -exec basename {} \; | tail -n+2)
 
 function template_file() {
 	echo "Templating $1 to $2..."
