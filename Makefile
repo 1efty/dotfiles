@@ -1,6 +1,6 @@
 ## format shell scripts
 fmt:
-	shfmt -d -w bash/.bashrc.d/* rc/.rc.d/*.sh install.sh
+	shfmt -d -w packages/bash/.bashrc.d/* packages/rc/.rc.d/*.sh install.sh
 
 ## initialize git submodules
 init/submodules:
