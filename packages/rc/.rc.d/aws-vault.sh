@@ -1,15 +1,13 @@
 if command -v aws-vault >/dev/null; then
 
 	export AWS_VAULT_BACKEND="file"
-	export AWS_VAULT_ASSUME_ROLE_TTL="1h"
-	export AWS_VAULT_SESSION_TTL="12h"
+	export AWS_VAULT_DURATION="1h"
 
 	if [ -n "$AWS_VAULT" ]; then
 		export ASSUME_ROLE="$AWS_VAULT"
 	else
 		AWS_VAULT_ARGS=()
-		AWS_VAULT_ARGS+=("--assume-role-ttl=${AWS_VAULT_ASSUME_ROLE_TTL}")
-		AWS_VAULT_ARGS+=("--session-ttl=${AWS_VAULT_SESSION_TTL}")
+		AWS_VAULT_ARGS+=("--duration=${AWS_VAULT_ASSUME_ROLE_TTL}")
 	fi
 
 	function _aws_vault_assume_role() {
@@ -20,7 +18,7 @@ if command -v aws-vault >/dev/null; then
 		fi
 		shift
 		if [ $# -eq 0 ]; then
-			aws-vault exec ${AWS_VAULT_ARGS[@]} "$role" -- bash -l
+			aws-vault exec ${AWS_VAULT_ARGS[@]} "$role" -- $SHELL
 		else
 			aws-vault exec ${AWS_VAULT_ARGS[@]} "$role" -- $*
 		fi
