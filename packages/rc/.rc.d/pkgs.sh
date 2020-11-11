@@ -3,9 +3,10 @@ export PKGS_FILE="${HOME}/.pkgs"
 
 function _uninstall_pkgs() {
 	local pkgs=()
+	local os=$(getos)
 
 	if [ "$#" = 0 ]; then
-		pkgs=($(cat $PKGS_FILE))
+		pkgs=($(cat $PKGS_FILE | awk -F ',' "/${os}/ {print \$2}"))
 	else
 		pkgs=($@)
 	fi
@@ -13,7 +14,7 @@ function _uninstall_pkgs() {
 	for pkg in ${pkgs[@]}; do
 		if [ -f "${PKGS_INSTALL_PATH}/$pkg" ]; then
 			rm -rvf "${PKGS_INSTALL_PATH}/$pkg"
-			sed -i --follow-symlinks "/^$pkg/d" $PKGS_FILE
+			sed -i --follow-symlinks "/${os},${pkg}/d" $PKGS_FILE
 		else
 			echo "$pkg already uninstalled..."
 		fi
@@ -24,6 +25,7 @@ function _install_pkgs() {
 	local temp="$(mktemp -d)"
 	local cleanup=false
 	local pkgs=()
+	local os=$(getos)
 
 	if [ "$#" = 0 ]; then
 		pkgs=($(cat $PKGS_FILE))
@@ -38,7 +40,7 @@ function _install_pkgs() {
 			git clone https://github.com/1efty/pkgs.git "$temp"
 			mkdir -p "$PKGS_INSTALL_PATH"
 			make -C "${temp}/install" $pkg INSTALL_PATH="$PKGS_INSTALL_PATH"
-			echo "$pkg" >>$PKGS_FILE
+			echo "${os},${pkg}" >>$PKGS_FILE
 			cleanup=true
 		fi
 	done

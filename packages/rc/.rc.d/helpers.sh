@@ -4,6 +4,11 @@ function randpw() {
 	echo
 }
 
+# get operating system
+function getos() {
+	uname -s | tr '[[:upper:]]' '[[:lower:]]'
+}
+
 # create SOCKS5 tunnel using SSH
 function ssht() {
 	local host="$1"
