@@ -5,9 +5,9 @@ function _uninstall_pkgs() {
 	local pkgs=()
 
 	if [ "$#" = 0 ]; then
-		pkgs=$(cat $PKGS_FILE)
+		pkgs=($(cat $PKGS_FILE))
 	else
-		pkgs=$@
+		pkgs=($@)
 	fi
 
 	for pkg in ${pkgs[@]}; do
@@ -26,9 +26,9 @@ function _install_pkgs() {
 	local pkgs=()
 
 	if [ "$#" = 0 ]; then
-		pkgs=$(cat $PKGS_FILE)
+		pkgs=($(cat $PKGS_FILE))
 	else
-		pkgs=$@
+		pkgs=($@)
 	fi
 
 	for pkg in ${pkgs[@]}; do
