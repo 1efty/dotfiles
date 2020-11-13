@@ -7,7 +7,7 @@ if command -v aws-vault >/dev/null; then
 		export ASSUME_ROLE="$AWS_VAULT"
 	else
 		AWS_VAULT_ARGS=()
-		AWS_VAULT_ARGS+=("--duration=${AWS_VAULT_ASSUME_ROLE_TTL}")
+		AWS_VAULT_ARGS+=("--duration=${AWS_VAULT_DURATION}")
 	fi
 
 	function _aws_vault_assume_role() {
