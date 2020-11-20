@@ -1,4 +1,5 @@
 .vscode
 .devcontainer
 .envrc
+.env
 .DS_Store
