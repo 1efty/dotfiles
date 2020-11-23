@@ -18,6 +18,12 @@ prune = true
 [pull]
 rebase = true
 
+{{ $os := env.Getenv "OS" -}}
+{{- if eq $os "linux" -}}
+[credential]
+helper = /usr/libexec/git-core/git-credential-libsecret
+{{- end }}
+
 [alias]
 co = checkout
 st = status
