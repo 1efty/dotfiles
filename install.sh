@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 export DOTFILES_PATH="$(pwd)"
+export OS="$(uname -s | tr '[[:upper:]]' '[[:lower:]]')"
 
 declare -a PACKAGES=$(find ./packages -maxdepth 1 -type d -exec basename {} \; | tail -n+2)
 
