@@ -1,18 +1,24 @@
+.PHONY = fmt submodules stow unstow restow
+
 ## format shell scripts
 fmt:
 	shfmt -d -w packages/bash/.bashrc.d/* packages/rc/.rc.d/*.sh install.sh
 
-## initialize git submodules
-init/submodules:
-	git submodule update --init --recursive
+## git submodules
+submodules:
+	git submodule update --init --recursive --remote
 
-## install packages to $HOME
-install:
-	bash install.sh --install
+## check if ready to install
+check:
+	bash install.sh check
 
-## uninstall all packages
-uninstall:
-	bash install.sh --uninstall
+## stow all packages
+stow:
+	bash install.sh stow
 
-## reinstall all packages
-reinstall: uninstall install
+## unstow all packages
+unstow:
+	bash install.sh unstow
+
+## restow all all packages
+restow: unstow stow
