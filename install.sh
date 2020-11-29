@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 export DOTFILES_PATH="$(pwd)"
 export OS="$(uname -s | tr '[[:upper:]]' '[[:lower:]]')"
 
@@ -7,7 +9,7 @@ declare -a PACKAGES=$(find ./packages -maxdepth 1 -type d -exec basename {} \; |
 
 function template_file() {
 	echo "Templating $1 to $2..."
-	gomplate -f "$1" -o "$2" 2>/dev/null
+	gomplate -f "$1" -o "$2"
 }
 
 function get_templates() {
@@ -51,6 +53,11 @@ EOF
 function check() {
 	if [[ -z ${HOME+x} ]]; then
 		echo "\$HOME is not set..."
+		exit 1
+	fi
+
+	if [[ ! -d "${HOME}/.ssh" ]]; then
+		echo "${HOME}/.ssh does not exit..."
 		exit 1
 	fi
 

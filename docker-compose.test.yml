@@ -1,0 +1,11 @@
+---
+version: "3.5"
+
+services:
+  sut:
+    build:
+      context: .
+      args:
+        ALPINE_VERSION: "3.12"
+    entrypoint: ["/bin/zsh", "-c"]
+    command: ["make verify"]
