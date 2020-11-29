@@ -22,20 +22,21 @@ function unstow_pkg() {
 	stow -v --ignore=.gitkeep --dotfiles --target $HOME -D -d packages "$1"
 }
 
-function install_pkgs() {
-	templates=$(get_templates)
+function render_templates() {
+	local templates=$(get_templates)
 	for tmpl in ${templates[@]}; do
 		local pkg_path="$(basename $(dirname $tmpl))"
 		template_file "$tmpl" "packages/${pkg_path}/$(basename $tmpl)"
 	done
+}
 
-	# stow packages
+function stow_pkgs() {
 	for pkg in ${PACKAGES[@]}; do
 		stow_pkg $pkg
 	done
 }
 
-function uninstall_pkgs() {
+function unstow_pkgs() {
 	for pkg in ${PACKAGES[@]}; do
 		unstow_pkg $pkg
 	done
@@ -43,20 +44,49 @@ function uninstall_pkgs() {
 
 function usage() {
 	cat <<EOF
-Usage: bash install.sh [--install] [--uninstall]
+Usage: bash install.sh [check|stow|unstow]
 EOF
 }
 
+function check() {
+	if [[ -z ${HOME+x} ]]; then
+		echo "\$HOME is not set..."
+		exit 1
+	fi
+
+	if [[ ! -L "${HOME}/.bashrc" ]] && [[ -e "${HOME}/.bashrc" ]]; then
+		echo "${HOME}/.bashrc is a regular file and cannot be overwritten by Stow..."
+		exit 1
+	fi
+
+	if [[ ! -L "${HOME}/.bash_profile" ]] && [[ -e "${HOME}/.bash_profile" ]]; then
+		echo "${HOME}/.bash_profile is a regular file and cannot be overwritten by Stow..."
+		exit 1
+	fi
+}
+
 function parge_args() {
+	if [ $# = 0 ]; then
+		usage
+		exit
+	fi
+
 	while [[ $1 ]]; do
 		echo "Handling [$1]"
 		case "$1" in
-		--install)
-			install_pkgs
+		stow)
+			check
+			render_templates
+			stow_pkgs
 			exit
 			;;
-		--uninstall)
-			uninstall_pkgs
+		unstow)
+			check
+			unstow_pkgs
+			exit
+			;;
+		check)
+			check
 			exit
 			;;
 		*)
