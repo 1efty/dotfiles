@@ -62,6 +62,29 @@ If you do not have [GNU Make][]:
 bash install.sh unstow
 ```
 
+## Development
+
+### Requirements
+
+Same as above, but a few more tools are required.
+
+- Docker Compose (or podman-compose)
+- bats
+
+### End-To-End Testing
+
+There is a `docker-compose.test.yml` that can be used to perform an end-to-end test of this project.
+
+```bash
+make test
+```
+
+### Verify Local Installation
+
+```bash
+make verify
+```
+
 ## Ignored Files
 
 By default, [GNU Stow] ignores the following

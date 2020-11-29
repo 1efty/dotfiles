@@ -1,4 +1,6 @@
-.PHONY = fmt submodules stow unstow restow
+DOCKER_COMPOSE = $(shell which docker-compose 2>/dev/null || echo "podman-compose")
+
+.PHONY = fmt submodules stow unstow restow test verify
 
 ## format shell scripts
 fmt:
@@ -22,3 +24,12 @@ unstow:
 
 ## restow all all packages
 restow: unstow stow
+
+## test project
+test:
+	$(DOCKER_COMPOSE) -f docker-compose.test.yml build
+	$(DOCKER_COMPOSE) -f docker-compose.test.yml run sut
+
+## verify installation
+verify:
+	bats tests
