@@ -11,15 +11,17 @@ function getos() {
 
 # create SOCKS5 tunnel using SSH
 function ssht() {
-	local host="$1"
+	local host="${1:-"socks5"}"
 	local port="${2:-"8080"}"
-	local tunnels="$(pgrep -fa ${port})"
-	if [ ! -n "$tunnels" ]; then
-		ssh -D "$port" -f -C -q -N "$host"
-		export SSH_TUNNEL_PID="$(pgrep -fal "ssh -D $port" | awk '{print $1}')"
+
+	if [ -n "$SSH_TUNNEL_PID" ]; then
+		sshtd
 	fi
-	local proxy="socks5h://localhost:${port}"
-	export ALL_PROXY="$proxy"
+
+	ssh -D "$port" -f -C -q -N "$host"
+	export SSH_TUNNEL_PID="$(pgrep -fal "ssh -D $port" | awk '{print $1}')"
+
+	export ALL_PROXY="socks5h://localhost:${port}"
 }
 
 # destroy SOCKS5 tunnel
