@@ -2,3 +2,5 @@ linux,gomplate
 linux,chamber
 linux,terragrunt
 linux,terraform
+linux,terraform-docs
+linux,tflint
