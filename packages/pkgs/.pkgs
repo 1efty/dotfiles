@@ -4,3 +4,6 @@ linux,terragrunt
 linux,terraform
 linux,terraform-docs
 linux,tflint
+linux,geth
+linux,geth
+linux,minikube
