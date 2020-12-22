@@ -24,5 +24,5 @@ RUN chown -R dotfiles.dotfiles $HOME
 
 USER dotfiles
 WORKDIR /home/dotfiles/src
-RUN make stow
+RUN make submodules stow
 ENTRYPOINT [ "/bin/zsh" ]

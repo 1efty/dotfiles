@@ -1,27 +1,27 @@
-[submodule "pyenv/.pyenv"]
-path = packages/pyenv/.pyenv
-url = https://github.com/pyenv/pyenv
+[submodule "packages/pyenv/.pyenv"]
+	path = packages/pyenv/.pyenv
+	url = https://github.com/pyenv/pyenv
 
-[submodule "pyenv/.pyenv-plugins/plugins/pyenv-virtualenv"]
-path = packages/pyenv/.pyenv-plugins/plugins/pyenv-virtualenv
-url = https://github.com/pyenv/pyenv-virtualenv
+[submodule "packages/pyenv/.pyenv-plugins/plugins/pyenv-virtualenv"]
+	path = packages/pyenv/.pyenv-plugins/plugins/pyenv-virtualenv
+	url = https://github.com/pyenv/pyenv-virtualenv
 
-[submodule "zsh/.ohmyzsh"]
-path = packages/zsh/.oh-my-zsh
-url = https://github.com/ohmyzsh/ohmyzsh
+[submodule "packages/zsh/.oh-my-zsh"]
+	path = packages/zsh/.oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh
 
-[submodule "zsh/.zsh-custom/themes/powerlevel10k"]
-path = packages/zsh/.zsh-custom/themes/powerlevel10k
-url = https://github.com/romkatv/powerlevel10k
+[submodule "packages/zsh/.zsh-custom/themes/powerlevel10k"]
+	path = packages/zsh/.zsh-custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
 
-[submodule "zsh/.zsh-custom/plugins/zsh-autosuggestions"]
-path = packages/zsh/.zsh-custom/plugins/zsh-autosuggestions
-url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "packages/zsh/.zsh-custom/plugins/zsh-autosuggestions"]
+	path = packages/zsh/.zsh-custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
 
-[submodule "zsh/.zsh-custom/plugins/zsh-history-substring-search"]
-path = packages/zsh/.zsh-custom/plugins/zsh-history-substring-search
-url = https://github.com/zsh-users/zsh-history-substring-search
+[submodule "packages/zsh/.zsh-custom/plugins/zsh-history-substring-search"]
+	path = packages/zsh/.zsh-custom/plugins/zsh-history-substring-search
+	url = https://github.com/zsh-users/zsh-history-substring-search
 
-[submodule "zsh/.zsh-custom/plugins/zsh-syntax-highlighting"]
-path = packages/zsh/.zsh-custom/plugins/zsh-syntax-highlighting
-url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "packages/zsh/.zsh-custom/plugins/zsh-syntax-highlighting"]
+	path = packages/zsh/.zsh-custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
