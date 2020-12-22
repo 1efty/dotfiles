@@ -31,7 +31,7 @@ Before using this project, make sure the following are installed:
 Clone this repository and it's sub-modules:
 
 ```bash
-git clone --recursive https://github.com/1efty/dotfiles
+git clone --recurse-submodules https://github.com/1efty/dotfiles
 ```
 
 Execute the `stow` make target:
