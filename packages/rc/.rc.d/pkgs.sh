@@ -1,12 +1,17 @@
 export PKGS_INSTALL_PATH="${HOME}/.local/bin"
 export PKGS_FILE="${HOME}/.pkgs"
 
+function _get_pkgs_from_file() {
+	local os=$(getos)
+	cat $PKGS_FILE | awk -F ',' "/${os}/ {print \$2}"
+}
+
 function _uninstall_pkgs() {
 	local pkgs=()
 	local os=$(getos)
 
 	if [ "$#" = 0 ]; then
-		pkgs=($(cat $PKGS_FILE | awk -F ',' "/${os}/ {print \$2}"))
+		pkgs=($(_get_pkgs_from_file))
 	else
 		pkgs=($@)
 	fi
@@ -23,25 +28,25 @@ function _uninstall_pkgs() {
 
 function _install_pkgs() {
 	local temp="$(mktemp -d)"
-	local cleanup=false
 	local pkgs=()
 	local os=$(getos)
 
 	if [ "$#" = 0 ]; then
-		pkgs=($(cat $PKGS_FILE))
+		pkgs=($(_get_pkgs_from_file))
 	else
 		pkgs=($@)
 	fi
 
+
 	for pkg in ${pkgs[@]}; do
 		if [ -f "${PKGS_INSTALL_PATH}/$pkg" ]; then
-			echo "$pkg already installed..."
+			echo "${pkg} already installed..."
 		else
-			git clone https://github.com/1efty/pkgs.git "$temp"
-			mkdir -p "$PKGS_INSTALL_PATH"
-			make -C "${temp}/install" $pkg INSTALL_PATH="$PKGS_INSTALL_PATH"
-			echo "${os},${pkg}" >>$PKGS_FILE
-			cleanup=true
+			mkdir -p "${PKGS_INSTALL_PATH}"
+			git clone https://github.com/1efty/pkgs.git "$temp" || true
+			make -C "${temp}/install" ${pkg} INSTALL_PATH="${PKGS_INSTALL_PATH}"
+			# only update $PKGS_FILE if line doesn't exist
+			grep -qxF "${os},${pkg}" ${PKGS_FILE} || echo "${os},${pkg}" >>$PKGS_FILE
 		fi
 	done
 
