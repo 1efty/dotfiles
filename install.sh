@@ -73,9 +73,9 @@ function check() {
 }
 
 function parge_args() {
+	# if no args passed, default to 'stow'
 	if [ $# = 0 ]; then
-		usage
-		exit
+		set -- "stow"
 	fi
 
 	while [[ $1 ]]; do
