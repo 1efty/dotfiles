@@ -1,6 +1,6 @@
 DOCKER_COMPOSE = $(shell which docker-compose 2>/dev/null || echo "podman-compose")
 
-.PHONY = fmt submodules stow unstow restow test verify
+.PHONY: fmt submodules stow unstow restow test verify
 
 ## format shell scripts
 fmt:
