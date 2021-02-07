@@ -32,13 +32,13 @@ function render_templates() {
 	done
 }
 
-function stow_pkgs() {
+function stow_packages() {
 	for pkg in ${PACKAGES[@]}; do
 		stow_pkg $pkg
 	done
 }
 
-function unstow_pkgs() {
+function unstow_packages() {
 	for pkg in ${PACKAGES[@]}; do
 		unstow_pkg $pkg
 	done
@@ -84,12 +84,12 @@ function parge_args() {
 		stow)
 			check
 			render_templates
-			stow_pkgs
+			stow_packages
 			exit
 			;;
 		unstow)
 			check
-			unstow_pkgs
+			unstow_packages
 			exit
 			;;
 		check)
