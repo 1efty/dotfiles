@@ -5,11 +5,16 @@ elif [ "${OS}" = "linux" ]; then
 fi
 
 # setup environment for digitalocean communication
+# requires yq > 4.0 & doctl auth init
 function doenv() {
-	if [ -f "${DIGITALOCEAN_CONFIG}" ]; then
-		export DIGITALOCEAN_ACCESS_TOKEN="$(yq r "${DIGITALOCEAN_CONFIG}" access-token)"
-		export DO_TOKEN="${DIGITALOCEAN_ACCESS_TOKEN}"
+	if command -v yq >/dev/null; then
+		if [ -f "${DIGITALOCEAN_CONFIG}" ]; then
+			export DIGITALOCEAN_ACCESS_TOKEN="$(yq eval .access-token "${DIGITALOCEAN_CONFIG}")"
+			export DO_TOKEN="${DIGITALOCEAN_ACCESS_TOKEN}"
+		else
+			echo "${DIGITALOCEAN_CONFIG} is not available"
+		fi
 	else
-		echo "${DIGITALOCEAN_CONFIG} is not available"
+		echo "yq is not installed"
 	fi
 }
