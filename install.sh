@@ -1,10 +1,13 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -e
 
-set -e
+# get directory that script is located
+# https://stackoverflow.com/questions/59895/how-can-i-get-the-source-directory-of-a-bash-script-from-within-the-script-itsel
+export DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-export DOTFILES_PATH="$(pwd)"
+# determine operating system, some templates need this
 export OS="$(uname -s | tr '[[:upper:]]' '[[:lower:]]')"
 
+# find available packages to stow
 declare -a PACKAGES=$(find ./packages -maxdepth 1 -type d -exec basename {} \; | tail -n+2)
 
 function template_file() {
@@ -13,7 +16,7 @@ function template_file() {
 }
 
 function get_templates() {
-	echo $(find ${DOTFILES_PATH}/templates -type f)
+	echo $(find ${DIR}/templates -type f)
 }
 
 function stow_pkg() {
