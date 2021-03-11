@@ -2,7 +2,7 @@
 
 # get directory that script is located
 # https://stackoverflow.com/questions/59895/how-can-i-get-the-source-directory-of-a-bash-script-from-within-the-script-itsel
-export DIR="$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+export DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 # determine operating system, some templates need this
 export OS="$(uname -s | tr '[[:upper:]]' '[[:lower:]]')"
