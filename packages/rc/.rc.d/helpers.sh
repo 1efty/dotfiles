@@ -10,9 +10,12 @@ function getos() {
 }
 
 # create SOCKS5 tunnel using SSH
+export SSHT_PORT="${SSHT_PORT:-"10088"}"
+export SSHT_HOST="${SSHT_HOST:-"socks5"}"
+
 function ssht() {
-	local host="${1:-"socks5"}"
-	local port="${2:-"8080"}"
+	local host="${1:-"${SSHT_HOST}"}"
+	local port="${2:-"${SSHT_PORT}"}"
 
 	if [ -n "$SSH_TUNNEL_PID" ]; then
 		sshtd
