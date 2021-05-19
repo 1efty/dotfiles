@@ -17,4 +17,9 @@ function cclean() {
 	if [ -d "${HOME}/.terraform.d" ]; then
 		rm -rf "${HOME}/.packer.d"
 	fi
+
+	# uninstall unused flatpak runtimes
+	if command -v flatpak >/dev/null 2>&1; then
+		flatpak uninstall --unused --assumeyes >/dev/null
+	fi
 }
