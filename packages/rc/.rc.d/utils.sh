@@ -22,4 +22,9 @@ function cclean() {
 	if command -v flatpak >/dev/null 2>&1; then
 		flatpak uninstall --unused --assumeyes >/dev/null
 	fi
+
+	# clear sqlite history
+	if [ -f "${HOME}/.sqlite_history" ]; then
+		rm -rf "${HOME}/.sqlite_history"
+	fi
 }
