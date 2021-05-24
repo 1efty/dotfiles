@@ -1,6 +1,6 @@
-.vscode
 .devcontainer
+.DS_Store
 .envrc
 .env
-.DS_Store
+.vscode
 .venv
