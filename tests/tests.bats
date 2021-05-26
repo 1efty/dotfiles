@@ -12,6 +12,13 @@ function test_file() {
     test_file .bash_profile
 }
 
+@test "fonts package is stowed" {
+    test_file .local/share/fonts/MesloLGS-NF-Bold-Italic.ttf
+    test_file .local/share/fonts/MesloLGS-NF-Bold.ttf
+    test_file .local/share/fonts/MesloLGS-NF-Italic.ttf
+    test_file .local/share/fonts/MesloLGS-NF-Regular.ttf
+}
+
 @test "git package is stowed" {
     test_file .gitignore
     test_file .gitconfig
