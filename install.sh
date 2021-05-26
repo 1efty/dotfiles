@@ -60,7 +60,7 @@ function check() {
 	fi
 
 	if [[ ! -d "${HOME}/.ssh" ]]; then
-		echo "${HOME}/.ssh does not exit..."
+		echo "${HOME}/.ssh does not exist..."
 		exit 1
 	fi
 
@@ -71,6 +71,11 @@ function check() {
 
 	if [[ ! -L "${HOME}/.bash_profile" ]] && [[ -e "${HOME}/.bash_profile" ]]; then
 		echo "${HOME}/.bash_profile is a regular file and cannot be overwritten by Stow..."
+		exit 1
+	fi
+
+	if [[ ! -d "${HOME}/.local/share/fonts" ]]; then
+		echo "${HOME}/.local/share/fonts does not exists..."
 		exit 1
 	fi
 }

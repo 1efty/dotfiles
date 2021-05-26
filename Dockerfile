@@ -16,7 +16,7 @@ RUN useradd dotfiles
 
 # pass make check
 RUN rm -rf $HOME/.bashrc ${HOME}/.bash_profile && \
-    mkdir $HOME/.ssh
+    mkdir -p $HOME/.ssh $HOME/.local/share/fonts
 
 # copy source
 COPY . /home/dotfiles/src
