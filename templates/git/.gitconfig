@@ -30,3 +30,6 @@ st = status
 br = branch
 w = whatchanged
 amend = commit --amend
+
+[init]
+defaultBranch = main
