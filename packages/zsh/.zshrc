@@ -129,3 +129,9 @@ if [ -d "${HOME}/.rc.d" ]; then
 		source $file
 	done
 fi
+
+if [ -d "${HOME}/.zshrc.d" ]; then
+	for file in ${HOME}/.zshrc.d/*.sh; do
+		source $file
+	done
+fi
