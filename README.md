@@ -1,5 +1,7 @@
 # dotfiles
 
+[![ci](https://github.com/1efty/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/1efty/dotfiles/actions/workflows/ci.yml)
+
 My dotfiles, managed with [GNU Stow][].
 
 ## About
