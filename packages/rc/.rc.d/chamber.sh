@@ -2,7 +2,7 @@ if command -v chamber >/dev/null; then
 
 	export CHAMBER_KMS_KEY_ALIAS="alias/chamber"
 
-	function chamber_init() {
+	function chamber-init() {
 		if command -v aws >/dev/null 2>&1; then
 			key_aliases=("$(aws kms list-aliases --query "Aliases[*].AliasName" --output text)")
 			if [[ ! "${key_aliases[@]}" =~ "${CHAMBER_KMS_KEY_ALIAS}" ]]; then
